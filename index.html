@@ -1,3 +1,147 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Hướng dẫn cài đặt Locket</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #c7d2fe; /* Màu nền xanh nhạt giống ảnh */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 450px;
+    background: #fff;
+    border-radius: 24px; /* Bo góc nhiều hơn */
+    padding: 30px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #1a1a1a;
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.progress {
+    text-align: center;
+    color: #718096;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.step {
+    display: none;
+    animation: fade 0.4s ease;
+}
+
+.step.active {
+    display: block;
+}
+
+.step h2 {
+    font-size: 18px;
+    color: #4a5568;
+    margin-bottom: 10px;
+}
+
+.step p {
+    color: #2d3748;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+/* Khu vực chứa ảnh hướng dẫn */
+.image-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.guide-img {
+    width: 48%; /* Chia đôi để hiện 2 ảnh */
+    border-radius: 12px;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    gap: 15px;
+}
+
+button {
+    flex: 1;
+    border: none;
+    padding: 14px;
+    border-radius: 100px; /* Nút hình bầu dục */
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-prev {
+    background: #e2e8f0;
+    color: #4a5568;
+}
+
+.btn-next {
+    background: #3b82f6; /* Màu xanh đậm của nút Tiếp */
+    color: #fff;
+}
+
+.btn-next:hover { background: #2563eb; }
+.btn-prev:hover { background: #cbd5e0; }
+
+@keyframes fade {
+    from {opacity: 0; transform: scale(0.95);}
+    to {opacity: 1; transform: scale(1);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>📘 Cài đặt Locket</h1>
+    <div class="progress" id="progress">Bước 1 / 6</div>
+
+    <div class="step active">
+        <h2>Bước 1</h2>
+        <p>Xóa ứng dụng <b>Locket</b> khỏi thiết bị của bạn.</p>
+        
+        <div class="image-container">
+            <img src="link_anh_1.jpg" alt="Xóa app 1" class="guide-img">
+            <img src="link_anh_2.jpg" alt="Xóa app 2" class="guide-img">
+        </div>
+    </div>
+
+    <div class="step">
+        <h2>Bước 2</h2>
+        <p>Vào <b>App Store</b> và tải ứng dụng <b>TestFlight</b>.</p>
+    </div>
+    <div class="buttons">
+        <button class="btn-prev" onclick="prevStep()">← Quay lại</button>
+        <button class="btn-next" onclick="nextStep()">Tiếp →</button>
+    </div>
+</div>
+
+<script>
+let currentStep = 0;
 const steps = document.querySelectorAll('.step');
 const progress = document.getElementById('progress');
 
