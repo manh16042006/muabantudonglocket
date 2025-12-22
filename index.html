@@ -67,7 +67,6 @@
             margin-bottom: 20px;
         }
 
-        /* Input Fields */
         .input-field {
             text-align: left;
             margin-bottom: 15px;
@@ -282,10 +281,11 @@
     const stepText = document.getElementById('step-text');
     const btnPrev = document.getElementById('btnPrev');
     const btnNext = document.getElementById('btnNext');
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxK8_AWARZheR99qsdEVuZOyE2DR2e3e05oYreZOl5xOwmV1Je-EBenZHEdv31DDg0F/exec';
+    
+    // URL Script của bạn
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbywMrNZqesESjzLfe4e3MssVot-OV54_VHOb97gDFtIZJR2009ALrQJq6VGyTKmhR5I/exec';
 
     function changeStep(n) {
-        // Xử lý Trang 0: Nhập liệu và Gửi dữ liệu
         if (currentStep === 0 && n === 1) {
             const name = document.getElementById('full-name').value.trim();
             const phone = document.getElementById('zalo-phone').value.trim();
@@ -295,30 +295,29 @@
                 return;
             }
 
-            // Gửi dữ liệu lên Google Sheets
-            btnNext.innerText = "Đang xử lý...";
+            // Đổi trạng thái nút để người dùng biết đang xử lý
+            btnNext.innerText = "Đang lưu...";
             btnNext.disabled = true;
 
+            // Gửi dữ liệu theo định dạng text/plain để vượt qua CORS
             fetch(scriptURL, {
                 method: 'POST',
                 mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name: name, phone: phone })
+                headers: { 'Content-Type': 'text/plain' },
+                body: `name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}`
             })
             .then(() => {
-                console.log("Dữ liệu đã gửi!");
                 btnNext.disabled = false;
                 moveNext();
             })
             .catch(error => {
-                console.error('Lỗi gửi dữ liệu!', error);
+                console.error('Lỗi!', error);
                 btnNext.disabled = false;
-                moveNext(); // Vẫn cho đi tiếp nếu lỗi mạng để khách không bị kẹt
+                moveNext(); // Luôn cho đi tiếp để không kẹt khách
             });
             return; 
         }
 
-        // Xử lý Bước 3 (Lấy mã xác minh)
         if (currentStep === 3 && n === 1) {
             alert("Nhắn tin cho Mạnh để nhận mã xác minh!");
             window.location.href = "https://zalo.me/0559939036"; 
@@ -326,11 +325,7 @@
             return;
         }
 
-        if (n === 1) {
-            moveNext();
-        } else {
-            movePrev();
-        }
+        n === 1 ? moveNext() : movePrev();
     }
 
     function moveNext() {
@@ -353,7 +348,6 @@
 
     function updateUI() {
         steps[currentStep].classList.add('active');
-        
         if (currentStep === 0) {
             stepText.innerText = "Thông tin cá nhân";
             btnNext.innerText = "Bắt đầu →";
@@ -361,16 +355,13 @@
             stepText.innerText = `Bước ${currentStep} / ${steps.length - 1}`;
             btnNext.innerText = currentStep === steps.length - 1 ? 'Xong ✅' : 'Tiếp →';
         }
-        
         btnPrev.style.visibility = currentStep === 0 ? 'hidden' : 'visible';
     }
 
     function copyText(id, btn) {
         const copyText = document.getElementById(id);
         copyText.select();
-        copyText.setSelectionRange(0, 99999);
         navigator.clipboard.writeText(copyText.value);
-        
         const oldText = btn.innerText;
         btn.innerText = "Đã chép!";
         setTimeout(() => { btn.innerText = oldText; }, 2000);
