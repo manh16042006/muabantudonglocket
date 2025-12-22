@@ -5,6 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hướng dẫn cài đặt Locket</title>
     <style>
+        .account-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 15px;
+    border-radius: 12px;
+    margin: 15px 0;
+}
+
+.input-group {
+    margin-bottom: 12px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 5px;
+}
+
+.copy-wrapper {
+    display: flex;
+    gap: 8px;
+}
+
+.copy-wrapper input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 14px;
+    background: #fff;
+    outline: none;
+}
+
+.copy-wrapper button {
+    width: auto;
+    flex: 0 0 100px;
+    padding: 10px;
+    background: #10b981; /* Màu xanh lá */
+    color: white;
+    font-size: 13px;
+    border-radius: 8px;
+}
+
+.copy-wrapper button:active {
+    transform: scale(0.95);
+}
+
         * { box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -126,7 +174,7 @@
         <p>Xóa ứng dụng <b>Locket</b> khỏi thiết bị của bạn.</p>
         <div class="img-grid">
             <img src="IMG_0627.png" alt="Step 1a">
-            <img src="IMG_0628.png" alt="Step 1b">
+            <img src="IMG_0628.jpeg" alt="Step 1b">
         </div>
     </div>
 
@@ -134,7 +182,7 @@
         <h2>Bước 2</h2>
         <p>Vào <b>App Store</b> và tải ứng dụng <b>TestFlight</b>.</p>
         <div class="img-grid">
-            <img src="IMG_0634.png" style="width: 100%;" alt="Step 2">
+            <img src="IMG_0634.jpeg" style="width: 100%;" alt="Step 2">
         </div>
     </div>
 
@@ -142,6 +190,23 @@
         <h2>Bước 3</h2>
         <p>Đăng xuất App Store và đăng nhập tài khoản được cấp.</p>
         <div class="note">⚠️ KHÔNG đăng nhập vào Cài đặt (Settings).</div>
+        <div class="account-box">
+    <div class="input-group">
+        <label>Tài khoản:</label>
+        <div class="copy-wrapper">
+            <input type="text" value="tai-khoan-cua-ban@gmail.com" id="user" readonly>
+            <button onclick="copyText('user')">Sao chép</button>
+        </div>
+    </div>
+
+    <div class="input-group">
+        <label>Mật khẩu:</label>
+        <div class="copy-wrapper">
+            <input type="text" value="MatKhau123" id="pass" readonly>
+            <button onclick="copyText('pass')">Sao chép</button>
+        </div>
+    </div>
+</div>
         <div class="img-grid" style="margin-top:15px;">
             <img src="IMG_0638.jpeg" style="width: 100%;" alt="Step 3">
         </div>
@@ -151,7 +216,7 @@
         <h2>Bước 4</h2>
         <p>Mở <b>TestFlight</b> và cài đặt ứng dụng <b>Locket</b>.</p>
         <div class="img-grid">
-            <img src="IMG_0635.png" style="width: 100%;" alt="Step 4">
+            <img src="IMG_0635.jpeg" style="width: 100%;" alt="Step 4">
         </div>
     </div>
 
@@ -159,7 +224,7 @@
         <h2>Bước 5</h2>
         <p>Mở Locket và chọn <b>Khôi phục đơn hàng (Restore)</b>.</p>
         <div class="img-grid">
-            <img src="IMG_0636.png" style="width: 100%;" alt="Step 5">
+            <img src="IMG_0636jpeg" style="width: 100%;" alt="Step 5">
         </div>
     </div>
 
@@ -204,7 +269,23 @@
         // Đổi chữ nút Tiếp ở bước cuối
         btnNext.innerText = currentStep === steps.length - 1 ? 'Xong ✅' : 'Tiếp →';
     }
-</script>
+</script> 
+    function copyText(id) {
+    const copyText = document.getElementById(id);
+    
+    // Chọn văn bản trong ô input
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); // Dành cho điện thoại
+
+    // Copy vào bộ nhớ tạm
+    navigator.clipboard.writeText(copyText.value).then(() => {
+        // Thông báo đơn giản
+        alert("Đã sao chép: " + copyText.value);
+    }).catch(err => {
+        console.error('Lỗi khi copy: ', err);
+    });
+}
+
 
 </body>
 </html>
