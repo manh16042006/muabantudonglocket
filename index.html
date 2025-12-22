@@ -81,7 +81,6 @@
             object-fit: cover;
         }
 
-        /* Tài khoản Box */
         .account-box {
             background: #f1f5f9;
             border: 1px solid #e2e8f0;
@@ -112,7 +111,6 @@
             font-size: 14px;
             background: #fff;
             outline: none;
-            color: #334155;
         }
 
         .btn-copy {
@@ -123,10 +121,7 @@
             border-radius: 10px;
             border: none;
             cursor: pointer;
-            white-space: nowrap;
         }
-
-        .btn-copy:active { transform: scale(0.95); }
 
         .note {
             background: #fffbeb;
@@ -156,7 +151,6 @@
 
         .btn-prev { background: #f1f5f9; color: #475569; }
         .btn-next { background: #3b82f6; color: #fff; }
-        .btn-next:hover { background: #2563eb; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
@@ -172,10 +166,10 @@
 
     <div class="step active">
         <h2>Bước 1</h2>
-        <p>Xóa ứng dụng <b>Locket</b> cũ khỏi thiết bị của bạn.</p>
+        <p>Xóa ứng dụng <b>Locket</b> khỏi thiết bị của bạn.</p>
         <div class="img-grid">
-            <img src="IMG_0627.png" alt="Xóa app">
-            <img src="IMG_0628.jpeg" alt="Xóa app">
+            <img src="IMG_0627.png" alt="Step 1a">
+            <img src="IMG_0628.jpeg" alt="Step 1b">
         </div>
     </div>
 
@@ -183,64 +177,62 @@
         <h2>Bước 2</h2>
         <p>Vào <b>App Store</b> và tải ứng dụng <b>TestFlight</b>.</p>
         <div class="img-grid">
-            <img src="IMG_0634.jpeg" style="width: 100%;" alt="Tải TestFlight">
+            <img src="IMG_0634.jpeg" style="width: 100%;" alt="Step 2">
         </div>
     </div>
 
     <div class="step">
         <h2>Bước 3</h2>
         <p>Đăng xuất App Store và đăng nhập tài khoản được cấp.</p>
-        <div class="note">⚠️ <b>LƯU Ý:</b> KHÔNG đăng nhập vào Cài đặt (Settings) của máy.</div>
-        
+        <div class="note">⚠️ KHÔNG đăng nhập vào Cài đặt (Settings).</div>
         <div class="account-box">
             <div class="input-group">
-                <label>ID APPLE</label>
+                <label>Tài khoản:</label>
                 <div class="copy-wrapper">
                     <input type="text" value="manhvietle07@gmail.com" id="user" readonly>
                     <button class="btn-copy" onclick="copyText('user', this)">Sao chép</button>
                 </div>
             </div>
             <div class="input-group">
-                <label>MẬT KHẨU</label>
+                <label>Mật khẩu:</label>
                 <div class="copy-wrapper">
                     <input type="text" value="Vipp123xyz@" id="pass" readonly>
                     <button class="btn-copy" onclick="copyText('pass', this)">Sao chép</button>
                 </div>
             </div>
         </div>
-
         <div class="img-grid">
-            <img src="IMG_0638.jpeg" style="width: 100%;" alt="Đăng nhập">
+            <img src="IMG_0638.jpeg" style="width: 100%;" alt="Step 3">
         </div>
     </div>
 
     <div class="step">
         <h2>Bước 4</h2>
-        <p>Mở <b>TestFlight</b> và cài đặt ứng dụng <b>Locket</b> từ bên trong đó.</p>
+        <p>Mở <b>TestFlight</b> và cài đặt ứng dụng <b>Locket</b>.</p>
         <div class="img-grid">
-            <img src="IMG_0635.jpeg" style="width: 100%;" alt="Cài Locket">
+            <img src="IMG_0635.jpeg" style="width: 100%;" alt="Step 4">
         </div>
     </div>
 
     <div class="step">
         <h2>Bước 5</h2>
-        <p>Mở Locket và chọn nút <b>Khôi phục đơn hàng (Restore)</b>.</p>
+        <p>Mở Locket và chọn <b>Khôi phục đơn hàng (Restore)</b>.</p>
         <div class="img-grid">
-            <img src="IMG_0636.jpeg" style="width: 100%;" alt="Restore">
+            <img src="IMG_0636.jpeg" style="width: 100%;" alt="Step 5">
         </div>
     </div>
 
     <div class="step">
         <h2>Hoàn tất</h2>
-        <p>Đăng xuất tài khoản App Store và bắt đầu sử dụng.</p>
+        <p>Đăng xuất tài khoản App Store và sử dụng bình thường.</p>
         <div class="img-grid">
-            <img src="IMG_0630.png" style="width: 100%;" alt="Hoàn tất">
+            <img src="IMG_0630.png" style="width: 100%;" alt="Step 6">
         </div>
     </div>
 
     <div class="buttons">
-        <button class="btn-nav btn-prev" id="btnPrev" onclick="changeStep(-1)" style="visibility: hidden;">Quay lại</button>
-        <button class="btn-nav btn-next" id="btnNext" onclick="changeStep(1)">Tiếp theo</button>
+        <button class="btn-nav btn-prev" id="btnPrev" onclick="changeStep(-1)" style="visibility: hidden;">← Quay lại</button>
+        <button class="btn-nav btn-next" id="btnNext" onclick="changeStep(1)">Tiếp →</button>
     </div>
 </div>
 
@@ -252,19 +244,48 @@
     const btnNext = document.getElementById('btnNext');
 
     function changeStep(n) {
-        steps[currentStep].classList.remove('active');
-        currentStep += n;
-
-        if (currentStep >= steps.length) {
-            alert("🎉 Chúc mừng! Bạn đã hoàn thành cài đặt.");
-            currentStep = steps.length - 1;
+        // Logic mới: Nếu đang ở Bước 3 (index 2) và nhấn Tiếp (n=1)
+        if (currentStep === 2 && n === 1) {
+            alert("Nhắn tin cho Mạnh để nhận mã xác minh!");
+            // Mở Zalo (Thay số điện thoại của bạn ở đây)
+            window.location.href = "https://zalo.me/0559939036"; 
+            
+            // Sau khi mở Zalo, cho phép chuyển sang bước tiếp theo
+            // (Nếu muốn họ phải quay lại mới bấm tiếp được thì bỏ dòng dưới)
+            moveNext(); 
+            return;
         }
 
+        if (n === 1) {
+            moveNext();
+        } else {
+            movePrev();
+        }
+    }
+
+    function moveNext() {
+        if (currentStep < steps.length - 1) {
+            steps[currentStep].classList.remove('active');
+            currentStep++;
+            updateUI();
+        } else {
+            alert("Chúc mừng! Bạn đã hoàn thành cài đặt.");
+        }
+    }
+
+    function movePrev() {
+        if (currentStep > 0) {
+            steps[currentStep].classList.remove('active');
+            currentStep--;
+            updateUI();
+        }
+    }
+
+    function updateUI() {
         steps[currentStep].classList.add('active');
         stepText.innerText = `Bước ${currentStep + 1} / ${steps.length}`;
-
         btnPrev.style.visibility = currentStep === 0 ? 'hidden' : 'visible';
-        btnNext.innerText = currentStep === steps.length - 1 ? 'Xong ✅' : 'Tiếp theo →';
+        btnNext.innerText = currentStep === steps.length - 1 ? 'Xong ✅' : 'Tiếp →';
     }
 
     function copyText(id, btn) {
@@ -273,14 +294,9 @@
         copyText.setSelectionRange(0, 99999);
         navigator.clipboard.writeText(copyText.value);
         
-        const originalText = btn.innerText;
+        const oldText = btn.innerText;
         btn.innerText = "Đã chép!";
-        btn.style.background = "#059669";
-        
-        setTimeout(() => {
-            btn.innerText = originalText;
-            btn.style.background = "#10b981";
-        }, 2000);
+        setTimeout(() => { btn.innerText = oldText; }, 2000);
     }
 </script>
 
