@@ -5,78 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hướng dẫn cài đặt Locket</title>
     <style>
-        .account-box {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    padding: 15px;
-    border-radius: 12px;
-    margin: 15px 0;
-}
-
-.input-group {
-    margin-bottom: 12px;
-}
-
-.input-group label {
-    display: block;
-    font-size: 13px;
-    color: #64748b;
-    margin-bottom: 5px;
-}
-
-.copy-wrapper {
-    display: flex;
-    gap: 8px;
-}
-
-.copy-wrapper input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #cbd5e1;
-    border-radius: 8px;
-    font-size: 14px;
-    background: #fff;
-    outline: none;
-}
-
-.copy-wrapper button {
-    width: auto;
-    flex: 0 0 100px;
-    padding: 10px;
-    background: #10b981; /* Màu xanh lá */
-    color: white;
-    font-size: 13px;
-    border-radius: 8px;
-}
-
-.copy-wrapper button:active {
-    transform: scale(0.95);
-}
-
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box; transition: all 0.3s ease; }
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #c7d2fe; /* Màu nền xanh nhạt như ảnh */
+            font-family: 'Inter', -apple-system, system-ui, sans-serif;
+            background: #c7d2fe;
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            color: #1e293b;
         }
 
         .container {
-            width: 90%;
+            width: 95%;
             max-width: 420px;
             background: #fff;
-            border-radius: 30px; /* Bo góc cực mạnh giống ảnh */
+            border-radius: 30px;
             padding: 30px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
 
         h1 {
             font-size: 22px;
-            color: #1a1a1a;
             margin-bottom: 5px;
             display: flex;
             justify-content: center;
@@ -85,9 +38,10 @@
         }
 
         .progress {
-            color: #888;
+            color: #64748b;
             font-size: 14px;
             margin-bottom: 25px;
+            font-weight: 600;
         }
 
         .step {
@@ -99,20 +53,20 @@
         .step.active { display: block; }
 
         .step h2 {
-            font-size: 16px;
-            color: #666;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #3b82f6;
             margin-bottom: 8px;
         }
 
         .step p {
             font-size: 17px;
             font-weight: 500;
-            color: #222;
-            line-height: 1.4;
+            line-height: 1.5;
             margin-bottom: 20px;
         }
 
-        /* Khung chứa ảnh */
         .img-grid {
             display: flex;
             gap: 12px;
@@ -121,20 +75,67 @@
         }
 
         .img-grid img {
-            width: 48%; /* Hiện 2 ảnh song song */
+            width: 48%;
             border-radius: 15px;
-            border: 1px solid #f0f0f0;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            object-fit: cover;
         }
 
-        /* Ghi chú màu vàng */
+        /* Tài khoản Box */
+        .account-box {
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            padding: 15px;
+            border-radius: 16px;
+            margin: 15px 0;
+        }
+
+        .input-group { margin-bottom: 12px; }
+        .input-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: #64748b;
+            margin-bottom: 4px;
+        }
+
+        .copy-wrapper {
+            display: flex;
+            gap: 8px;
+        }
+
+        .copy-wrapper input {
+            flex: 1;
+            padding: 10px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 14px;
+            background: #fff;
+            outline: none;
+            color: #334155;
+        }
+
+        .btn-copy {
+            padding: 8px 15px;
+            background: #10b981;
+            color: white;
+            font-size: 13px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .btn-copy:active { transform: scale(0.95); }
+
         .note {
-            background: #fff3cd;
+            background: #fffbeb;
             padding: 12px;
-            border-left: 4px solid #ffc107;
-            font-size: 13px;   
+            border-left: 4px solid #f59e0b;
+            font-size: 13px;
             border-radius: 8px;
             margin-top: 10px;
+            color: #92400e;
         }
 
         .buttons {
@@ -143,19 +144,19 @@
             margin-top: 30px;
         }
 
-        button {
+        .btn-nav {
             flex: 1;
-            padding: 15px;
+            padding: 16px;
             border: none;
             border-radius: 50px;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: 0.2s;
         }
 
-        .btn-prev { background: #e2e8f0; color: #4a5568; }
+        .btn-prev { background: #f1f5f9; color: #475569; }
         .btn-next { background: #3b82f6; color: #fff; }
+        .btn-next:hover { background: #2563eb; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
@@ -171,10 +172,10 @@
 
     <div class="step active">
         <h2>Bước 1</h2>
-        <p>Xóa ứng dụng <b>Locket</b> khỏi thiết bị của bạn.</p>
+        <p>Xóa ứng dụng <b>Locket</b> cũ khỏi thiết bị của bạn.</p>
         <div class="img-grid">
-            <img src="IMG_0627.png" alt="Step 1a">
-            <img src="IMG_0628.jpeg" alt="Step 1b">
+            <img src="IMG_0627.png" alt="Xóa app">
+            <img src="IMG_0628.jpeg" alt="Xóa app">
         </div>
     </div>
 
@@ -182,63 +183,64 @@
         <h2>Bước 2</h2>
         <p>Vào <b>App Store</b> và tải ứng dụng <b>TestFlight</b>.</p>
         <div class="img-grid">
-            <img src="IMG_0634.jpeg" style="width: 100%;" alt="Step 2">
+            <img src="IMG_0634.jpeg" style="width: 100%;" alt="Tải TestFlight">
         </div>
     </div>
 
     <div class="step">
         <h2>Bước 3</h2>
         <p>Đăng xuất App Store và đăng nhập tài khoản được cấp.</p>
-        <div class="note">⚠️ KHÔNG đăng nhập vào Cài đặt (Settings).</div>
+        <div class="note">⚠️ <b>LƯU Ý:</b> KHÔNG đăng nhập vào Cài đặt (Settings) của máy.</div>
+        
         <div class="account-box">
-    <div class="input-group">
-        <label>Tài khoản:</label>
-        <div class="copy-wrapper">
-            <input type="text" value="manhvietle07@gmail.com" id="user" readonly>
-            <button onclick="copyText('user')">Sao chép</button>
+            <div class="input-group">
+                <label>ID APPLE</label>
+                <div class="copy-wrapper">
+                    <input type="text" value="manhvietle07@gmail.com" id="user" readonly>
+                    <button class="btn-copy" onclick="copyText('user', this)">Sao chép</button>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>MẬT KHẨU</label>
+                <div class="copy-wrapper">
+                    <input type="text" value="Vipp123xyz@" id="pass" readonly>
+                    <button class="btn-copy" onclick="copyText('pass', this)">Sao chép</button>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <div class="input-group">
-        <label>Mật khẩu:</label>
-        <div class="copy-wrapper">
-            <input type="text" value="Vipp123xyz@" id="pass" readonly>
-            <button onclick="copyText('pass')">Sao chép</button>
-        </div>
-    </div>
-</div>
-        <div class="img-grid" style="margin-top:15px;">
-            <img src="IMG_0638.jpeg" style="width: 100%;" alt="Step 3">
+        <div class="img-grid">
+            <img src="IMG_0638.jpeg" style="width: 100%;" alt="Đăng nhập">
         </div>
     </div>
 
     <div class="step">
         <h2>Bước 4</h2>
-        <p>Mở <b>TestFlight</b> và cài đặt ứng dụng <b>Locket</b>.</p>
+        <p>Mở <b>TestFlight</b> và cài đặt ứng dụng <b>Locket</b> từ bên trong đó.</p>
         <div class="img-grid">
-            <img src="IMG_0635.jpeg" style="width: 100%;" alt="Step 4">
+            <img src="IMG_0635.jpeg" style="width: 100%;" alt="Cài Locket">
         </div>
     </div>
 
     <div class="step">
         <h2>Bước 5</h2>
-        <p>Mở Locket và chọn <b>Khôi phục đơn hàng (Restore)</b>.</p>
+        <p>Mở Locket và chọn nút <b>Khôi phục đơn hàng (Restore)</b>.</p>
         <div class="img-grid">
-            <img src="IMG_0636jpeg" style="width: 100%;" alt="Step 5">
+            <img src="IMG_0636.jpeg" style="width: 100%;" alt="Restore">
         </div>
     </div>
 
     <div class="step">
         <h2>Hoàn tất</h2>
-        <p>Đăng xuất tài khoản App Store và sử dụng bình thường.</p>
+        <p>Đăng xuất tài khoản App Store và bắt đầu sử dụng.</p>
         <div class="img-grid">
-            <img src="IMG_0630.png" style="width: 100%;" alt="Step 6">
+            <img src="IMG_0630.png" style="width: 100%;" alt="Hoàn tất">
         </div>
     </div>
 
     <div class="buttons">
-        <button class="btn-prev" id="btnPrev" onclick="changeStep(-1)" style="visibility: hidden;">← Quay lại</button>
-        <button class="btn-next" id="btnNext" onclick="changeStep(1)">Tiếp →</button>
+        <button class="btn-nav btn-prev" id="btnPrev" onclick="changeStep(-1)" style="visibility: hidden;">Quay lại</button>
+        <button class="btn-nav btn-next" id="btnNext" onclick="changeStep(1)">Tiếp theo</button>
     </div>
 </div>
 
@@ -254,22 +256,33 @@
         currentStep += n;
 
         if (currentStep >= steps.length) {
-            alert("Chúc mừng! Bạn đã hoàn thành cài đặt.");
+            alert("🎉 Chúc mừng! Bạn đã hoàn thành cài đặt.");
             currentStep = steps.length - 1;
         }
 
         steps[currentStep].classList.add('active');
-        
-        // Cập nhật text tiến trình
         stepText.innerText = `Bước ${currentStep + 1} / ${steps.length}`;
 
-        // Ẩn/Hiện nút Quay lại
         btnPrev.style.visibility = currentStep === 0 ? 'hidden' : 'visible';
-        
-        // Đổi chữ nút Tiếp ở bước cuối
-        btnNext.innerText = currentStep === steps.length - 1 ? 'Xong ✅' : 'Tiếp →';
+        btnNext.innerText = currentStep === steps.length - 1 ? 'Xong ✅' : 'Tiếp theo →';
     }
-</script> 
+
+    function copyText(id, btn) {
+        const copyText = document.getElementById(id);
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(copyText.value);
+        
+        const originalText = btn.innerText;
+        btn.innerText = "Đã chép!";
+        btn.style.background = "#059669";
+        
+        setTimeout(() => {
+            btn.innerText = originalText;
+            btn.style.background = "#10b981";
+        }, 2000);
+    }
+</script>
 
 </body>
 </html>
