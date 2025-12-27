@@ -322,6 +322,7 @@
     const scriptURL = 'https://script.google.com/macros/s/AKfycbxK8_AWARZheR99qsdEVuZOyE2DR2e3e05oYreZOl5xOwmV1Je-EBenZHEdv31DDg0F/exec';
 
     function changeStep(n) {
+        // Xử lý bước 0 (Thông tin cá nhân)
         if (currentStep === 0 && n === 1) {
             const name = document.getElementById('full-name').value.trim();
             const phone = document.getElementById('zalo-phone').value.trim();
@@ -352,15 +353,7 @@
             return; 
         }
 
-        if (currentStep === 3 && n === 1) {
-            const confirmZalo = confirm("Bây giờ hệ thống sẽ yêu cầu Mã xác minh. Bạn có muốn nhắn tin cho Mạnh để lấy mã không?");
-            if (confirmZalo) {
-                window.open("https://zalo.me/0559939036", "_blank");
-            }
-            moveNext();
-            return;
-        }
-
+        // Chuyển bước bình thường (Phần thông báo Zalo cũ đã được xóa)
         n === 1 ? moveNext() : movePrev();
     }
 
