@@ -266,7 +266,7 @@
                 <label>Mật khẩu:</label>
                 <div class="copy-wrapper">
                     <input type="text" value="Vipp123xyz@" id="pass" readonly>
-                    <button class="btn-copy" onclick="copyText('pass', this)">Sao chép</button>
+                    <button class="btn-copy" onclick="copyText('pass', this, true)">Sao chép</button>
                 </div>
             </div>
         </div>
@@ -322,7 +322,6 @@
     const scriptURL = 'https://script.google.com/macros/s/AKfycbxK8_AWARZheR99qsdEVuZOyE2DR2e3e05oYreZOl5xOwmV1Je-EBenZHEdv31DDg0F/exec';
 
     function changeStep(n) {
-        // Xử lý bước 0 (Thông tin cá nhân)
         if (currentStep === 0 && n === 1) {
             const name = document.getElementById('full-name').value.trim();
             const phone = document.getElementById('zalo-phone').value.trim();
@@ -353,7 +352,6 @@
             return; 
         }
 
-        // Chuyển bước bình thường (Phần thông báo Zalo cũ đã được xóa)
         n === 1 ? moveNext() : movePrev();
     }
 
@@ -388,7 +386,8 @@
         window.scrollTo(0, 0);
     }
 
-    function copyText(id, btn) {
+    // Hàm copyText đã được sửa đổi để nhận thêm tham sốshowAlert
+    function copyText(id, btn, showAlert = false) {
         const copyInput = document.getElementById(id);
         copyInput.select();
         copyInput.setSelectionRange(0, 99999);
@@ -397,6 +396,12 @@
             const oldText = btn.innerText;
             btn.innerText = "Đã chép!";
             btn.style.background = "#059669";
+            
+            // Nếu là mật khẩu (showAlert = true), hiện thông báo
+            if (showAlert) {
+                alert("Nhắn tin cho Mạnh để nhận mã xác minh");
+            }
+
             setTimeout(() => { 
                 btn.innerText = oldText; 
                 btn.style.background = "#10b981";
